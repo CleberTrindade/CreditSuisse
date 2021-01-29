@@ -16,7 +16,7 @@ namespace CreditSuisseApp.entities
 
 		public string getCategory(Trade trade)
 		{
-			return (trade.value > 1000000 && trade.clientSector.Equals("Private")) ? "HIGHRISK" : "";
+			return (trade.Value > 1000000 && trade.ClientSector.Equals("Private")) ? "HIGHRISK" : "";
 		}
 	}
 }

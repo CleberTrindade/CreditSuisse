@@ -34,13 +34,12 @@ namespace CreditSuisseApp
             var inic = 1;
             System.Console.WriteLine("");
 
-            Negotiation negotiation = new Negotiation();
-            negotiation.ReferenceDate = DtReference;
+            Negotiation negotiation;
 
             while (inic <= total)
 			{
                 System.Console.Write("Enter the trading description: ");
-                negotiation.DescTrade = System.Console.ReadLine();
+                negotiation = new Negotiation(DtReference, System.Console.ReadLine());                
                 dataOutput.Add(negotiationCommand.GetCategory(negotiation));
                 inic++;
             }

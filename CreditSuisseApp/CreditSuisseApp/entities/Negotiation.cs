@@ -1,7 +1,4 @@
-﻿using CreditSuisseApp.Trades;
-using CreditSuisseApp.Util;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace CreditSuisseApp.entities
 {
@@ -9,6 +6,13 @@ namespace CreditSuisseApp.entities
 	{
 		public DateTime ReferenceDate { get; set; }
 		public string DescTrade { get; set; }
-		
+
+		public Negotiation() { }
+		public Negotiation(DateTime referenceDate, string descTrade)
+		{
+			ReferenceDate = referenceDate;
+			DescTrade = descTrade;
+		}
+
 	}
 }

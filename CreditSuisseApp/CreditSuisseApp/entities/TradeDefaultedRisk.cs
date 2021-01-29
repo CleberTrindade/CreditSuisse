@@ -16,7 +16,7 @@ namespace CreditSuisseApp.entities
 
 		public string getCategory(Trade trade)
 		{
-			return ((trade.ReferenceDate.Subtract(trade.nextPaymentDate)).Days > 30) ? "DEFAULTED" : "";
+			return ((trade.ReferenceDate.Subtract(trade.NextPaymentDate)).Days > 30) ? "DEFAULTED" : "";
 		}
 	}
 }

@@ -7,14 +7,10 @@ namespace CreditSuisseApp.Trades
 {
 	public class Trade : ITrade
 	{
-		public DateTime ReferenceDate;
-		public double value;
-		public string clientSector;
-		public DateTime nextPaymentDate;
-
-		public double Value => value;
-		public string ClientSector => clientSector;
-		public DateTime NextPaymentDate => nextPaymentDate;
+		public DateTime ReferenceDate { get; private set; }
+		public double Value { get; private set; }
+		public string ClientSector { get; private set; }
+		public DateTime NextPaymentDate { get; private set; }
 
 		public List<ITrade> tradeCategories = new List<ITrade>()
 		{
@@ -31,9 +27,9 @@ namespace CreditSuisseApp.Trades
 			DateTime _nextPaymentDate)
 		{
 			ReferenceDate = _referenceDate;
-			value = _value;
-			clientSector = _clientSector;
-			nextPaymentDate = _nextPaymentDate;
+			Value = _value;
+			ClientSector = _clientSector;
+			NextPaymentDate = _nextPaymentDate;
 		}
 
 		public string getCategory(Trade trade)
