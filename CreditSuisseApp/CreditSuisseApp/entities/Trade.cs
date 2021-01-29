@@ -46,7 +46,7 @@ namespace CreditSuisseApp.Trades
 					category = _trade.getCategory(trade).Equals("") ? "" : _trade.getCategory(trade);
 			}
 
-			return category;
+			return category.Equals("") ? "Undefined category." : category;
 		}
 	};
 }

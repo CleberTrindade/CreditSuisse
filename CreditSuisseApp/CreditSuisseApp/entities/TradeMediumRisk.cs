@@ -6,11 +6,11 @@ namespace CreditSuisseApp.entities
 {
 	public class TradeMediumRisk : ITrade
 	{
-		public double Value => throw new NotImplementedException();
+		public double Value { get; private set; }
 
-		public string ClientSector => throw new NotImplementedException();
+		public string ClientSector { get; private set; }
 
-		public DateTime NextPaymentDate => throw new NotImplementedException();
+		public DateTime NextPaymentDate { get; private set; }
 
 		public string getCategory(Trade trade)
 		{

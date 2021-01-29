@@ -1,17 +1,16 @@
 ﻿using CreditSuisseApp.entities;
-using CreditSuisseApp.Interfaces;
 using CreditSuisseApp.Interfaces.Commands;
 using CreditSuisseApp.Trades;
 using CreditSuisseApp.Util;
 using System;
-using System.Collections.Generic;
 
 namespace CreditSuisseApp.Commands
 {
 	public class NegotiationCommand : INegotiationCommand
 	{
-		public NegotiationCommand()	{
-			
+		public NegotiationCommand()
+		{
+
 		}
 
 		public string GetCategory(Negotiation negotiation)
@@ -21,7 +20,8 @@ namespace CreditSuisseApp.Commands
 			if (dataValidation.Length > 0) return dataValidation;
 
 			var fields = negotiation.DescTrade.Split(" ");
-			Trade trade = new Trade(negotiation.ReferenceDate, Convert.ToDouble(fields[0].ToString()), 
+
+			Trade trade = new Trade(negotiation.ReferenceDate, Convert.ToDouble(fields[0].ToString()),
 									fields[1].ToString().Trim(), DateTime.Parse(fields[2].ToString()));
 
 			return trade.getCategory(trade);
@@ -29,12 +29,13 @@ namespace CreditSuisseApp.Commands
 
 		public string DataValidation(string info)
 		{
-			var fields = info.Split(" ");
+			var fields = info.Split(" ");			
 
-			if (fields.Length != 3) return "Invalid trading data.";
+			if (fields.Length < 3) return "Invalid trading data.";
 
 			var validated = Utilities.NumericValidation(fields[0]) ? "" : "Trading Value invalid.";
-			validated = Utilities.DateValidation(fields[2]) ? "" : " Date the next pending payment invalid.";
+			validated += Utilities.DateValidation(fields[2]) ? "" : " Date the next pending payment invalid.";
+			
 			return validated;
 		}
 	}

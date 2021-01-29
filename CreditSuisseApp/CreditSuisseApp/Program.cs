@@ -57,8 +57,7 @@ namespace CreditSuisseApp
 
         public static void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<INegotiationCommand, NegotiationCommand>();
-            services.AddSingleton<ITradeCommand, TradeCommand>();
+            services.AddSingleton<INegotiationCommand, NegotiationCommand>();            
         }
 
         private static void dateValidation()
