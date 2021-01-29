@@ -1,5 +1,8 @@
-﻿using CreditSuisseApp.entities;
+﻿using CreditSuisseApp.Commands;
+using CreditSuisseApp.entities;
+using CreditSuisseApp.Interfaces.Commands;
 using CreditSuisseApp.Util;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
@@ -12,6 +15,13 @@ namespace CreditSuisseApp
 
         static void Main(string[] args)
 		{
+            var serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection);
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+
+            var negotiationCommand = serviceProvider.GetService<INegotiationCommand>();
+
+
             List<string> dataOutput = new List<string>();
 
             System.Console.Write("Enter the reference Date: ");
@@ -31,7 +41,7 @@ namespace CreditSuisseApp
 			{
                 System.Console.Write("Enter the trading description: ");
                 negotiation.DescTrade = System.Console.ReadLine();
-                dataOutput.Add(negotiation.GetCategory());
+                dataOutput.Add(negotiationCommand.GetCategory(negotiation));
                 inic++;
             }
 
@@ -44,6 +54,12 @@ namespace CreditSuisseApp
             
             Console.ReadKey();
 		}
+
+        public static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSingleton<INegotiationCommand, NegotiationCommand>();
+            services.AddSingleton<ITradeCommand, TradeCommand>();
+        }
 
         private static void dateValidation()
         {
@@ -58,3 +74,4 @@ namespace CreditSuisseApp
         }        
     }
 }
+

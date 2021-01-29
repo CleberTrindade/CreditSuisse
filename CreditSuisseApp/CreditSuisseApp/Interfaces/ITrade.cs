@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CreditSuisseApp.Trades.Interfaces
+namespace CreditSuisseApp.Interfaces
 {
 	interface ITrade
 	{
