@@ -1,18 +1,17 @@
 ﻿using CreditSuisseApp.entities;
+using CreditSuisseApp.Interfaces;
 using CreditSuisseApp.Interfaces.Commands;
 using CreditSuisseApp.Trades;
 using CreditSuisseApp.Util;
 using System;
+using System.Collections.Generic;
 
 namespace CreditSuisseApp.Commands
 {
 	public class NegotiationCommand : INegotiationCommand
 	{
-
-		private readonly ITradeCommand _tradeCommand;
-		public NegotiationCommand(ITradeCommand tradeCommand)
-		{
-			_tradeCommand = tradeCommand;
+		public NegotiationCommand()	{
+			
 		}
 
 		public string GetCategory(Negotiation negotiation)
@@ -22,13 +21,10 @@ namespace CreditSuisseApp.Commands
 			if (dataValidation.Length > 0) return dataValidation;
 
 			var fields = negotiation.DescTrade.Split(" ");
-			Trade trade = new Trade();
-			trade.ReferenceDate = negotiation.ReferenceDate;
-			trade.value = Convert.ToDouble(fields[0].ToString());
-			trade.clientSector = fields[1].ToString().Trim();
-			trade.nextPaymentDate = DateTime.Parse(fields[2].ToString());
+			Trade trade = new Trade(negotiation.ReferenceDate, Convert.ToDouble(fields[0].ToString()), 
+									fields[1].ToString().Trim(), DateTime.Parse(fields[2].ToString()));
 
-			return _tradeCommand.GetCategory(trade);
+			return trade.getCategory(trade);
 		}
 
 		public string DataValidation(string info)

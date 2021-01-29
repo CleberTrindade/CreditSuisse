@@ -1,13 +1,17 @@
-﻿using System;
+﻿using CreditSuisseApp.Trades;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CreditSuisseApp.Interfaces
 {
-	interface ITrade
+	public interface ITrade
 	{
-		double Value { get; } //indicates the transaction amount in dollars
-		string ClientSector { get; } //indicates the client´s sector which can be "Public" or "Private"
-		DateTime NextPaymentDate { get; } //indicates when the next payment from the client to the bank is expected
+		double Value { get; } 
+		string ClientSector { get; } 
+		DateTime NextPaymentDate { get; } 
+
+ 		string getCategory(Trade trade);
+		
 	}
 }
